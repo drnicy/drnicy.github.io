@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>皮膚轉化美學專欄 - 專業輸出修復版</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:ital,wght@1,300&display=swap" rel="stylesheet">
+    <!-- 引入 Lucide 圖標庫 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #f9fafb;
+        }
+        .font-serif { font-family: 'Noto Serif TC', serif; }
+        
+        /* 強制固定圖標大小，防止被壓縮 */
+        .icon-container svg {
+            width: 24px !important;
+            height: 24px !important;
+            display: block;
+        }
+
+        /* 打印優化 */
+        @media print {
+            body { background-color: white !important; }
+            .no-print { display: none !important; }
+            .print-shadow { box-shadow: none !important; border: 1px solid #e5e7eb !important; }
+            .print-break { page-break-inside: avoid; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        /* 圖片容器確保比例 */
+        .image-aspect {
+            aspect-ratio: 3 / 4;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="text-neutral-900 leading-relaxed">
+
+    <div class="max-w-6xl mx-auto px-6 py-12 md:px-12">
+        <!-- 標題區域 -->
+        <header class="mb-16 border-b border-neutral-200 pb-10">
+            <h1 class="text-5xl md:text-7xl font-light tracking-tighter mb-4 text-neutral-800 uppercase">
+                SKIN <span class="font-serif italic text-neutral-500 lowercase">Transformation</span>
+            </h1>
+            <p class="text-neutral-500 uppercase tracking-widest text-sm font-bold">
+                五種改善膚質的保養與醫美方案 • 專業醫師精選
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <!-- 左側：療程內容 -->
+            <div class="lg:col-span-7 space-y-10">
+                <div class="border-l-4 border-neutral-300 pl-6 mb-12">
+                    <p class="text-2xl leading-relaxed text-neutral-600 italic whitespace-pre-line font-light">
+                        「真正的美源於對細節的極致追求。
+                        從日常的精準保養到高端的醫美科技，
+                        我們為您梳理出五個重塑肌膚質感的關鍵路徑。」
+                    </p>
+                </div>
+
+                <div id="treatments-list" class="space-y-8">
+                    <!-- 內容由 JS 動態生成 -->
+                </div>
+            </div>
+
+            <!-- 右側：視覺圖片與建議 -->
+            <div class="lg:col-span-5">
+                <div class="lg:sticky lg:top-10 space-y-10">
+                    <!-- 核心視覺圖片 -->
+                    <div class="relative overflow-hidden rounded-[2rem] shadow-2xl bg-neutral-200 print-shadow">
+                        <img 
+                          src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=1200" 
+                          alt="Radiant Skin Portrait"
+                          class="image-aspect hover:scale-105 transition-transform duration-700"
+                          id="main-image"
+                        />
+                        <div class="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-black/70 to-transparent">
+                            <p class="text-white text-xs tracking-[0.2em] uppercase mb-2 font-bold opacity-80">Skin Radiance</p>
+                            <p class="text-white text-lg font-serif italic">The ultimate dewy, hydrated glow</p>
+                        </div>
+                    </div>
+
+                    <!-- 專家卡片 -->
+                    <div class="bg-neutral-900 text-white p-10 rounded-[2rem] space-y-6 shadow-xl print-shadow">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-[1px] bg-white opacity-30"></div>
+                            <h4 class="text-xl font-serif tracking-wide">專家建議</h4>
+                        </div>
+                        <p class="text-neutral-400 text-sm leading-7 whitespace-pre-line font-light">
+                            所有的醫美療程應在專業醫師諮詢後進行。
+                            術後的肌膚處於脆弱期，建議加強補水並嚴格防曬。
+                        </p>
+                        <div class="pt-6 border-t border-white/10 flex justify-between items-center text-[10px] uppercase tracking-widest text-white/30 font-bold">
+                            <span>Dr.Nicy Beauty Guide 2026</span>
+                            <span>Volume 01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 頁尾 -->
+        <footer class="mt-24 pt-10 border-t border-neutral-200 text-center text-neutral-400 text-[10px] uppercase tracking-[0.3em] font-bold">
+            © 2026 Dr.Nicy Aesthetic Editorial • All Rights Reserved
+        </footer>
+    </div>
+
+    <script>
+        // 資料設定
+        const treatmentsData = [
+            {
+                title: "日常保養：外用維他命C、A醇",
+                desc: "增加膠原蛋白增生，讓膚色均勻透亮。\n這是居家護理的基石，透過活性成分穩定膚質。",
+                icon: "sun",
+                color: "text-amber-500",
+                bg: "bg-amber-50",
+                tag: "Daily Care"
+            },
+            {
+                title: "皮秒雷射 (Picosure)",
+                desc: "針對黑色素與輕微毛孔問題，\n利用極短脈衝擊碎色素與空泡效應，達到淨膚與縮小毛孔的效果。",
+                icon: "zap",
+                color: "text-blue-500",
+                bg: "bg-blue-50",
+                tag: "Laser"
+            },
+            {
+                title: "微針電波 (Microneedle RF)",
+                desc: "改善中度毛孔與細紋。\n結合微針與電波能量，深入真皮層重建膠原組織。",
+                icon: "sparkles",
+                color: "text-purple-500",
+                bg: "bg-purple-50",
+                tag: "Technology"
+            },
+            {
+                title: "SKin Booster 水光療程",
+                desc: "精準補水同時增加真皮層膠原蛋白厚度，\n讓肌膚由內而外散發澎潤光澤。",
+                icon: "droplets",
+                color: "text-cyan-500",
+                bg: "bg-cyan-50",
+                tag: "Injectable"
+            },
+            {
+                title: "電音波緊緻拉提 (Thermage/HIFU)",
+                desc: "減少鬆弛垂墜感。\n透過熱能收縮筋膜層或真皮層，重塑輪廓線條。",
+                icon: "arrow-up-circle",
+                color: "text-rose-500",
+                bg: "bg-rose-50",
+                tag: "Lifting"
+            }
+        ];
+
+        // 渲染列表
+        const listContainer = document.getElementById('treatments-list');
+        
+        treatmentsData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = "print-break group flex flex-col md:flex-row gap-6 p-8 bg-white rounded-3xl border border-neutral-100 shadow-sm transition-all hover:shadow-xl hover:border-neutral-200";
+            card.innerHTML = `
+                <div class="flex-shrink-0 w-14 h-14 ${item.bg} rounded-2xl flex items-center justify-center icon-container">
+                    <i data-lucide="${item.icon}" class="${item.color}"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">${item.tag}</span>
+                        <div class="h-[1px] flex-1 bg-neutral-100"></div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-neutral-800">${item.title}</h3>
+                    <p class="text-neutral-500 leading-relaxed text-sm whitespace-pre-line font-light">${item.desc}</p>
+                </div>
+            `;
+            listContainer.appendChild(card);
+        });
+
+        // 初始化圖標
+        window.addEventListener('load', () => {
+            lucide.createIcons();
+        });
+
+        // 圖片加載失敗處理
+        const img = document.getElementById('main-image');
+        img.onerror = function() {
+            this.src = "https://images.unsplash.com/photo-1570172233541-bc4698d9c044?auto=format&fit=crop&q=80&w=1200";
+        };
+    </script>
+</body>
+</html>
